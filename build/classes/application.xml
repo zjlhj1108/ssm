@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- 开启注解扫描 排除controller-->
+	<context:component-scan base-package="com.zjl.ssm">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<!-- 引入配置文件 -->
+	<!-- <context:property-placeholder
+		location="classpath:jdbc.properties" /> -->
+	<!-- 开启自动切面 需要导入外界支持aspectj的包 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!--配置数据源 -->
+	<bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/mybatis"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="datasource"></property>
+	</bean>
+	
+	<!-- 配置sqlsessionfactory -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 配置mybatis配置文件的位置 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<!-- 配置mybatis别名包 -->
+		<property name="typeAliasesPackage" value="com.zjl.ssm.bean"></property>
+		<!-- 配置mybatis配置文件的包 -->
+		<property name="mapperLocations" value="classpath:com/zjl/ssm/mapper/*.xml"></property>
+		<!--配置数据源  -->
+		<property name="dataSource" ref="datasource"></property>
+	</bean>
+	
+	<!-- 声明式事务的配置方法，几乎不用，使用注解式事务
+	配置需要加事务的方法 
+	<tx:advice id="tx" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" isolation="DEFAULT" propagation="REQUIRED" timeout="-1"/>
+			<tx:method name="update*" isolation="DEFAULT" propagation="REQUIRED" timeout="-1"/>
+			<tx:method name="select*" isolation="DEFAULT" propagation="REQUIRED" timeout="-1"/>
+			<tx:method name="delete*" isolation="DEFAULT" propagation="REQUIRED" timeout="-1"/>
+		</tx:attributes>
+	</tx:advice>
+	 配置切面设置
+	<aop:config>
+		 配置切入点表达式 
+		<aop:pointcut expression="execution(* com.zjl.ssm.dao.*.*(..))" id="point"/>
+		配置通知 与要做用的方法关联
+		<aop:advisor advice-ref="tx" pointcut-ref="point"/>
+	</aop:config>
+	-->
+	<!-- 开启注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	
+	
+</beans>
