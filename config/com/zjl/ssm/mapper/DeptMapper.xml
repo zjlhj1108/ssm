@@ -6,5 +6,9 @@
 	<select id="getAllDept" resultType="dept">
 		select did ,dName from dept
 	</select>
+	<!-- 根据did查询部门信息 -->
+	<select id="getDeptById" resultType="dept">
+		select did ,dName from dept where did=#{id}
+	</select>
 	
 </mapper>

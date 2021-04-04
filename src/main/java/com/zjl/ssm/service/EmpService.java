@@ -10,4 +10,12 @@ public interface EmpService {
 
 	Integer insertEmp(Emp emp);
 
+	Integer deleteChecked(String ids);
+
+	Integer deleteOne(String eid);
+
+	Emp getEmpById(String eid);
+
+	Integer updateEmp(Emp emp);
+
 }

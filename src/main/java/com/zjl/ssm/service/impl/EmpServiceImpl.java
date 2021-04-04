@@ -26,4 +26,28 @@ public class EmpServiceImpl implements EmpService {
 		return empDao.insertEmp(emp);
 	}
 
+	@Override
+	public Integer deleteChecked(String ids) {
+		// TODO Auto-generated method stub
+		return empDao.deleteChecked(ids);
+	}
+
+	@Override
+	public Integer deleteOne(String eid) {
+		// TODO Auto-generated method stub
+		return empDao.deleteOne(eid);
+	}
+
+	@Override
+	public Emp getEmpById(String eid) {
+		// TODO Auto-generated method stub
+		return empDao.getEmpById(eid);
+	}
+
+	@Override
+	public Integer updateEmp(Emp emp) {
+		// TODO Auto-generated method stub
+		return empDao.updateEmp(emp);
+	}
+
 }

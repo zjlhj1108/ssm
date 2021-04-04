@@ -26,4 +26,28 @@ public class EmpDaoImpl implements EmpDao {
 		return empMapper.insertEmp(emp);
 	}
 
+	@Override
+	public Integer deleteChecked(String ids) {
+		// TODO Auto-generated method stub
+		return empMapper.deleteChecked(ids);
+	}
+
+	@Override
+	public Integer deleteOne(String eid) {
+		// TODO Auto-generated method stub
+		return empMapper.deleteOne(eid);
+	}
+
+	@Override
+	public Emp getEmpById(String eid) {
+		// TODO Auto-generated method stub
+		return empMapper.getEmpById(eid);
+	}
+
+	@Override
+	public Integer updateEmp(Emp emp) {
+		// TODO Auto-generated method stub
+		return empMapper.updateEmp(emp);
+	}
+
 }

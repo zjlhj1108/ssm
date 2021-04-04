@@ -10,4 +10,11 @@ public interface EmpMapper {
 
 	Integer insertEmp(Emp emp);
 
+	Integer deleteChecked(String ids);
+	Integer deleteOne(String ids);
+
+	Emp getEmpById(String eid);
+
+	Integer updateEmp(Emp emp);
+
 }

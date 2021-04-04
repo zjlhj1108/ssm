@@ -5,6 +5,7 @@ public class Emp {
 	private String eName;
 	private String password;
 	private String telephone;
+	private String gender;
 	private Dept dept;
 	
 	
@@ -14,22 +15,23 @@ public class Emp {
 	}
 	
 	
-	public Emp(String eid, String eName, String password, String telephone, Dept dept) {
+	public Emp(String eid, String eName, String password, String telephone, String gender, Dept dept) {
 		super();
 		this.eid = eid;
 		this.eName = eName;
 		this.password = password;
 		this.telephone = telephone;
+		this.gender = gender;
 		this.dept = dept;
 	}
 
+	public String getGender() {
+		return gender;
+	}
 
-	public Emp(String eid, String eName, String password, String telephone) {
-		super();
-		this.eid = eid;
-		this.eName = eName;
-		this.password = password;
-		this.telephone = telephone;
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 
@@ -72,7 +74,7 @@ public class Emp {
 	@Override
 	public String toString() {
 		return "Emp [eid=" + eid + ", eName=" + eName + ", password=" + password + ", telephone=" + telephone
-				+ ", dept=" + dept + "]";
+				+ ", gender=" + gender + ", dept=" + dept + "]";
 	}
 	
 }
