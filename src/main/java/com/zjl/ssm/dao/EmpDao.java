@@ -8,4 +8,6 @@ public interface EmpDao {
 
 	List<Emp> getAllEmp();
 
+	Integer insertEmp(Emp emp);
+
 }

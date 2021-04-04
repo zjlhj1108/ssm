@@ -20,4 +20,10 @@ public class EmpDaoImpl implements EmpDao {
 		return eList;
 	}
 
+	@Override
+	public Integer insertEmp(Emp emp) {
+		// TODO Auto-generated method stub
+		return empMapper.insertEmp(emp);
+	}
+
 }

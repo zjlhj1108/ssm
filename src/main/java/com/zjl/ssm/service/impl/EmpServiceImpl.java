@@ -20,4 +20,10 @@ public class EmpServiceImpl implements EmpService {
 		return eList;
 	}
 
+	@Override
+	public Integer insertEmp(Emp emp) {
+		// TODO Auto-generated method stub
+		return empDao.insertEmp(emp);
+	}
+
 }

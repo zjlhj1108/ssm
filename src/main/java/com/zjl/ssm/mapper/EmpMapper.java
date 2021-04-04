@@ -8,4 +8,6 @@ public interface EmpMapper {
 
 	List<Emp> getAllEmp();
 
+	Integer insertEmp(Emp emp);
+
 }

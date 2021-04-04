@@ -14,16 +14,16 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	<!-- 引入配置文件 -->
-	<!-- <context:property-placeholder
-		location="classpath:jdbc.properties" /> -->
+	<context:property-placeholder
+		location="classpath:jdbc.properties" />
 	<!-- 开启自动切面 需要导入外界支持aspectj的包 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<!--配置数据源 -->
 	<bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource">
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/mybatis"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
 	</bean>
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -62,7 +62,9 @@
 	-->
 	<!-- 开启注解事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	
+	<!-- 自动生成mapper实现类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.zjl.ssm.mapper"></property>
+	</bean>
 	
 </beans>

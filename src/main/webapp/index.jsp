@@ -8,6 +8,6 @@
 </head>
 <body>
  欢迎来到ssm
- <a href="emps">员工列表</a>
+ <a href="emps/1">员工列表</a>
 </body>
 </html>
